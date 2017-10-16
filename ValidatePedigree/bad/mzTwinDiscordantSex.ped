@@ -1,0 +1,6 @@
+# MZ twins with discordant sex
+famid	id	fatherid	motherid	sex	affected	relation.MZ	relation.DZ
+1	11	0	0	1	0	0	0
+1	12	0	0	2	0	0	0
+1	13	11	12	1	1	1	0
+1	14	11	12	2	1	1	0 # problem - sex of MZ twins must be the samr

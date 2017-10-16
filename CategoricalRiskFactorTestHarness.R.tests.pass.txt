@@ -1,0 +1,36 @@
+#### Categorical risk factor solver tests
+#### good solutions should be found for all these scenarios
+#### indicated by low diagnostics and no errors
+
+
+./CategoricalRiskFactorTestHarness.R 0.1 "0.9 0.05 0.05" "1 2 3"
+
+#### swapping stratum order
+# these should give the same results per equiv statum
+./CategoricalRiskFactorTestHarness.R 0.1 "0.9 0.09 0.01" "1 2 9"
+./CategoricalRiskFactorTestHarness.R 0.1 "0.09 0.9 0.01" "2 1 9"
+./CategoricalRiskFactorTestHarness.R 0.1 "0.01 0.09 0.9" "9 2 1"
+
+#### 2 strata 
+# to see whether it uses BFGS
+./CategoricalRiskFactorTestHarness.R 0.1 "0.1 0.9" "9 1"
+./CategoricalRiskFactorTestHarness.R 0.1 "0.5 0.5" "1 1"
+
+#### very high lifetime risk
+./CategoricalRiskFactorTestHarness.R 0.9 "0.9 0.09 0.01" "6 5 1"
+./CategoricalRiskFactorTestHarness.R 0.9 "0.9 0.09 0.01" "1 1 1"
+
+#### 10 strata
+# has more difficulty for 1% lifetime risk than for either higher or lower lifetime risk
+./CategoricalRiskFactorTestHarness.R 0.154   "0.04586296 0.01404387 0.07189525 0.14519789 0.14094756 0.11676317 0.09735496 0.08036022 0.10917037 0.17840374" "1 2 3 4 5 6 7 8 9 10"
+./CategoricalRiskFactorTestHarness.R 0.0154  "0.04586296 0.01404387 0.07189525 0.14519789 0.14094756 0.11676317 0.09735496 0.08036022 0.10917037 0.17840374" "1 2 3 4 5 6 7 8 9 10"
+./CategoricalRiskFactorTestHarness.R 0.00154 "0.04586296 0.01404387 0.07189525 0.14519789 0.14094756 0.11676317 0.09735496 0.08036022 0.10917037 0.17840374" "1 2 3 4 5 6 7 8 9 10"
+
+# 20 strata
+./CategoricalRiskFactorTestHarness.R 0.154 "0.04032885 0.08122525 0.09092843 0.02794425 0.0282324 0.01047383 0.09354517 0.08657633 0.009291071 0.004914793 0.05799295 0.06417939 0.02307606 0.02749815 0.0975305 0.06319975 0.03783377 0.03734089 0.05368186 0.0642063" "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+
+#### very rare stratum, and increasingly rare disease
+./CategoricalRiskFactorTestHarness.R 0.1    "0.9 0.0999999 0.0000001" "1 9 10"
+./CategoricalRiskFactorTestHarness.R 0.01   "0.9 0.0999999 0.0000001" "1 9 10"
+./CategoricalRiskFactorTestHarness.R 0.001  "0.9 0.0999999 0.0000001" "1 9 10"
+./CategoricalRiskFactorTestHarness.R 0.0001 "0.9 0.0999999 0.0000001" "1 9 10"

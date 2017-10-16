@@ -1,0 +1,12 @@
+# Disease Model should fail because of an invalid heritability
+
+Title
+Test of data type - proportion
+   
+Description
+Should fail because of an invalid heritability
+
+lifetimeRisk 0.05
+
+# heritability must be a proportion, here it has been erroneously supplied as a percentage
+heritability 60

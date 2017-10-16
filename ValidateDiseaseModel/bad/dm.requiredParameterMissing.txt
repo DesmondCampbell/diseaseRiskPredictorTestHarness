@@ -1,0 +1,12 @@
+# Disease Model should fail - a required parameter is missing
+
+Title
+Test - required parameter missing
+   
+Description
+Should fail because a required parameter is missing
+
+# the required parameter lifetimeRisk is missing, in this case misspelt
+lifetimeRiskXXX 0.05
+
+heritability 0.6

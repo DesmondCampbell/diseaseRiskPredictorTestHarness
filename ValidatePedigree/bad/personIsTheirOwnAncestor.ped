@@ -1,0 +1,12 @@
+# person is their own ancestor
+# In this pedigree person 41 is their own ancestor
+famid	id	fatherid	motherid	sex	affected	deceased	relation.MZ	relation.DZ	cannabis	pgs	pgsCannabis
+1	11	0	0	1	0	1	0	0	2	NA	0
+1	12	0	0	2	0	0	0	0	NA	NA	0
+1	21	11	12	1	1	0	0	0	2	NA	0
+1	22	41	12	2	1	0	0	0	2	NA	0 # problem - this person's father should be 11 not 41
+1	23	0	0	1	0	1	0	0	2	NA	0
+1	31	23	22	1	0	0	0	0	NA	NA	0
+1	32	23	22	2	1	0	0	0	2	NA	0
+1	33	0	0	1	1	0	0	0	2	NA	0
+1	41	33	32	1	1	0	0	0	2	NA	0

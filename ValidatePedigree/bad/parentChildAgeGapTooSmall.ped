@@ -1,0 +1,8 @@
+# nuclear family - parent child age gap too small
+famid	id	fatherid	motherid	sex	affected	age	deceased	relation.MZ	relation.DZ	cannabis	pgs	pgsCannabis
+1	11	0	0	1	0	30	1	0	0	2	NA	0
+1	12	0	0	2	0	NA	0	0	0	NA	NA	0
+1	13	11	12	1	1	9	0	0	0	2	NA	0
+1	14	11	12	1	1	21	0	0	0	2	NA	0 # parent child age gap too small
+1	15	11	12	1	1	11	0	0	0	2	NA	0
+1	16	11	12	1	1	NA	0	0	0	2	NA	0

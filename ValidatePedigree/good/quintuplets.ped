@@ -1,0 +1,9 @@
+# quintuplets containing 2 MZ pairs
+famid	id	fatherid	motherid	sex	affected	relation.MZ	relation.DZ
+1	11	0	0	1	0	0	0
+1	12	0	0	2	1	0	0
+1	13	11	12	1	1	1	0
+1	14	11	12	1	1	1	1
+1	15	11	12	2	0	2	1
+1	16	11	12	2	1	2	2
+1	17	11	12	1	0	0	2

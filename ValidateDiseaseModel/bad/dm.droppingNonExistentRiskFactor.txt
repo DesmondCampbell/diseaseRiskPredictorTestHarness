@@ -1,0 +1,14 @@
+# Disease Model should fail - droppedRiskFactors references a non-existent risk factor 
+
+Title
+Test - droppedRiskFactors references a non-existent risk factor
+   
+Description
+Should fail because droppedRiskFactors references a non-existent risk factor
+
+lifetimeRisk 0.05
+
+heritability 0.6
+
+# droppedRiskFactors references a non-existent risk factor
+droppedRiskFactors wibble

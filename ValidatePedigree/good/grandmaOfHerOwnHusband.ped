@@ -1,0 +1,11 @@
+# grandma of her own husband
+# Person 12 is the grandmother of her own husband. Such pedigrees are possible though rare. 
+# More often than not, such a pedigree is specified in error. If age is a variable in the ped file then this would usually trigger an error report in such cases.
+famid	id	fatherid	motherid	sex	affected	deceased	relation.MZ	relation.DZ
+1	11	0	0	1	0	1	0	0
+1	12	0	0	2	0	0	0	0
+1	21	31	12	1	1	0	0	0
+1	22	11	12	2	1	0	0	0
+1	23	0	0	1	0	1	0	0
+1	31	23	22	1	0	0	0	0
+1	32	23	22	2	1	0	0	0

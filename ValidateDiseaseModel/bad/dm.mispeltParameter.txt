@@ -1,0 +1,14 @@
+# Disease Model should fail - contains a parameter that is not defined for the disease model format
+
+Title
+Test - unknown parameter
+   
+Description
+Should fail because contains an unknown parameter
+
+# this parameter is not defined for the disease model format
+unknownParameter 0.5
+
+lifetimeRisk 0.05
+
+heritability 0.6
