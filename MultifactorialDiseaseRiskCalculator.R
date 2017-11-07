@@ -50,6 +50,7 @@ if( bCmdLine) {
 } else {
   options(width=200)
   sWD <- "C:/Desmond/diseaseRiskPredictor/testHarness"
+  sWD <- "C:/Desmond/diseaseRiskPredictor/testHarness/19oct17/diseaseRiskPredictorTestHarness"
   setwd(sWD)
   
   # specify command
@@ -58,6 +59,10 @@ if( bCmdLine) {
   sCmdArgs <- "-d ./validateNYearRisk/dm.schizophrenia.txt -p ./validateNYearRisk/testPedDes.tsv -y 10"
   sCmdArgs <- "-d diseaseModels/dm.schizophrenia.txt -p ./pedigrees/ped.tmp.tsv"
   sCmdArgs <- "-d diseaseModels/dm.Con1.txt -p pedigrees/ped.p2c3.deceasedNA.tsv"
+  sCmdArgs <- "-d diseaseModels/dm.depression.txt -p tmp.ped"
+  sCmdArgs <- "-d model_new.txt -p ped_new.txt"
+  sCmdArgs <- "-d model_new.2.txt -p 31ped.txt"
+  sCmdArgs <- "-d model_new.3.txt -p 31ped.less.txt"
 
   vsArgs <- strsplit(split=" +",sCmdArgs)[[1]]
 }	
@@ -72,7 +77,8 @@ option_list <- list(
   make_option(c("-i", "--nofIterations"), action="store",      help="number of iteratations to use for standard deviation estimation [default %default]", default=10, type="integer" ),
   make_option(c("-y", "--nofYears"),      action="store",      help="estimate risk of becoming affected within the next n years [default %default]",      default=5,  type="integer" ),
   make_option(c("-n", "--nofDraws"),      action="store",      help="number of draws from pedigree posterior liability distribution [default %default]",  default=20000,  type="integer" ),
-  make_option(c("-b", "--nofBurnIn"),     action="store",      help="number of draws for Gibbs Sampler burn in [default %default]",                       default=1000,  type="integer" )
+  make_option(c("-b", "--nofBurnIn"),     action="store",      help="number of draws for Gibbs Sampler burn in [default %default]",                       default=1000,  type="integer" ),
+  make_option(c("-r", "--rngSeed"),       action="store",      help="random number generator seed [default %default]",                                    default=NA,  type="integer" )
 )
 
 # get command line options, if help option encountered print help and exit,
@@ -107,12 +113,6 @@ fnStr(opt)
 
 
 
-# read inputs into appropriate variables
-sFileDis <- opt$diseaseModel
-sFilePed <- opt$pedigree
-
-
-
 fnRep("Below is some diagnostic information regarding the setup")
 fnRep("sessionInfo() reports")
 print( sessionInfo())
@@ -129,6 +129,18 @@ if( 'devtools' %in% installed.packages()[,"Package"] ){
   print(devtools::find_rtools(debug=TRUE))
   cat("\n")
 }
+
+
+
+if(!is.na(opt$rngSeed)){
+	fnRep( "WARNING: setting RNG seed to -", opt$rngSeed )
+	set.seed(opt$rngSeed)
+}
+
+
+# read inputs into appropriate variables
+sFileDis <- opt$diseaseModel
+sFilePed <- opt$pedigree
 
 
 
@@ -169,6 +181,11 @@ title(sFilePed)
 fnRep('calc pedigree prior liability distribution')
 lPedDis <- fnPrepareForRiskPrediction( dfPed, lDis, bVerbose=T )
 names(lPedDis)
+vbx <- sapply(lPedDis, function(x) "error" %in% class(x) )
+if(any(vbx)) { 
+	for( ii in which(vbx)) fnStr(lPedDis[[ii]])
+	stop('Problem with preparing risk prediction')
+}
 
 llRes <- list()
 # draw samples from pedigree posterior liability distribution
@@ -258,4 +275,7 @@ if(bPlotToFile) dev.off(iDevFilePlot)
 
 
 
+if(!is.na(opt$rngSeed)){
+	fnRep( "WARNING: RNG seed was initialised during program startup" )
+}
 fnRep("Completed Successfully")
